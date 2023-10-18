@@ -28,6 +28,7 @@ public class DisplayTime : MonoBehaviour
         minute = System.DateTime.Now.Minute;
         seconde = System.DateTime.Now.Second;
 
-        displayTime.GetComponent<TextMeshProUGUI>().text = "" + hour + ":" + minute + ":" + seconde;   
+        displayTime.GetComponent<TextMeshProUGUI>().text = "" + hour + ":" + minute + ":" + seconde;
+
     }
 }

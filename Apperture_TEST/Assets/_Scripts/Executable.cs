@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class Executable : MonoBehaviour
 {
+
+    [SerializeField] float messageDisplayTime = 2f;
+    [SerializeField] GameObject normalMessage;
+
+    Animator messageAnimator;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        messageAnimator = normalMessage.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -18,7 +24,7 @@ public class Executable : MonoBehaviour
         AddProjectInList();
 
 
-        if(Input.GetKey(KeyCode.W))
+        if(Input.GetKeyDown(KeyCode.W))
         {
             Debug.Log("IZI");
         }
@@ -26,23 +32,32 @@ public class Executable : MonoBehaviour
 
     private void DisplayNormalMessage()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             Debug.Log("Normal Message");
+            messageAnimator.SetBool("canGo", true);
+            StartCoroutine(MessageCoroutine());
         }
     }
     private void DisplayWarningMessage()
     {
-        if (Input.GetKey(KeyCode.B))
+        if (Input.GetKeyDown(KeyCode.S))
         {
             Debug.Log("Warning Message");
         }
     }
     private void AddProjectInList()
     {
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             Debug.Log("Add Project To List");
         }
+    }
+
+    IEnumerator MessageCoroutine()
+    {
+        yield return new WaitForSeconds(messageDisplayTime);
+        messageAnimator.SetBool("canGo", false);
+
     }
 }
