@@ -10,7 +10,6 @@ public class DisplayTime : MonoBehaviour
     [SerializeField] GameObject displayDate;
     int hour;
     int minute;
-    int seconde;
 
    
     // Start is called before the first frame update
@@ -26,9 +25,8 @@ public class DisplayTime : MonoBehaviour
     {
         hour = System.DateTime.Now.Hour;
         minute = System.DateTime.Now.Minute;
-        seconde = System.DateTime.Now.Second;
 
-        displayTime.GetComponent<TextMeshProUGUI>().text = "" + hour + ":" + minute + ":" + seconde;
+        displayTime.GetComponent<TextMeshProUGUI>().text = "" + hour + ":" + minute;
 
     }
 }
