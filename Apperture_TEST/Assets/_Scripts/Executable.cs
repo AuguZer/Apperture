@@ -21,10 +21,6 @@ public class Executable : MonoBehaviour
     Animator normalAnimator;
     Animator warningAnimator;
 
-    bool normalActive;
-    bool warningActive;
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -44,9 +40,8 @@ public class Executable : MonoBehaviour
 
     private void DisplayNormalMessage()
     {
-        if (Input.GetKeyDown(KeyCode.A) && !warningActive)
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            normalActive = true;
             normalMessage.SetActive(true);
             normalAnimator.SetBool("canGo", true);
             StartCoroutine(MessageCoroutine());
@@ -54,9 +49,8 @@ public class Executable : MonoBehaviour
     }
     private void DisplayWarningMessage()
     {
-        if (Input.GetKeyDown(KeyCode.S) && !normalActive)
+        if (Input.GetKeyDown(KeyCode.S))
         {
-            warningActive = true;
             warningMessage.SetActive(true);
             warningAnimator.SetBool("canGo", true);
             StartCoroutine(WarningCoroutine());
@@ -80,17 +74,10 @@ public class Executable : MonoBehaviour
     {
         yield return new WaitForSeconds(messageDisplayTime);
         normalAnimator.SetBool("canGo", false);
-        yield return new WaitForSeconds(messageDisplayTime - 1f);
-        normalMessage.SetActive(false);
-        normalActive = false;
     }
     IEnumerator WarningCoroutine()
     {
         yield return new WaitForSeconds(messageDisplayTime);
         warningAnimator.SetBool("canGo", false);
-        yield return new WaitForSeconds(messageDisplayTime - 1f);
-        warningMessage.SetActive(false);
-        warningActive = false;
-
     }
 }
